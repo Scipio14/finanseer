@@ -6,6 +6,8 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import kpiRoutes from './routes/kpi.js'
+import KPI from './models/KPI.js'
+import {kpis} from './data/data.js'
 
 
 /* CONFIG */
@@ -27,6 +29,7 @@ mongoose
   .connect(process.env.MONGODB_URL).then(()=>console.log("Database connected")).then(
     async ()=>{
       app.listen(PORT,()=>console.log(`server on port: ${PORT}`))
+      // KPI.insertMany(kpis);
     })
     .catch((error)=>console.log(`${error} did not connect`))
 
