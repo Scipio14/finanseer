@@ -16,8 +16,7 @@ import {
 } from "recharts";
 import regression, { DataPoint } from "regression";
 
-type Props = {};
-const Predictions = (props: Props) => {
+const Predictions = () => {
   const { palette } = useTheme();
   const [isPredictions, setIsPredictions] = useState(false);
   const { data: kpiData } = useGetKpisQuery();
@@ -60,7 +59,9 @@ const Predictions = (props: Props) => {
             backgroundColor: palette.grey[700],
             boxShadow: "0.1rem 0.1rem 0.1rem 0.1rem rgba(0,0,0,.4) ",
           }}
-        ></Button>
+        >
+          Show Predicted Revenue for Next Year
+        </Button>
       </FlexBetween>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
@@ -86,7 +87,7 @@ const Predictions = (props: Props) => {
               angle={-90}
               value="Revenue in USD"
               offset={-5}
-              position="insideBottom"
+              position="insideLeft"
             />
           </YAxis>
 
@@ -109,7 +110,7 @@ const Predictions = (props: Props) => {
           />
           {isPredictions && (
             <Line
-              type="monotone"
+              strokeDasharray="5 5"
               dataKey="Predicted Revenue"
               stroke={palette.secondary[500]}
             />
